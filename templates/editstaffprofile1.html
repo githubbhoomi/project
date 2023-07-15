@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Profiles Edit</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            padding: 20px;
+            background-color: #ccd6f5;
+            position: fixed;
+            height: 100%;
+        }
+        .sidebar a {
+            display: block;
+            color: #110202;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        p, h1 {
+            color: rgb(13, 12, 12);
+        }
+        .content {
+            margin-left: 220px; /* Adjust this value to provide space for the sidebar */
+        }
+        .profile-section {
+            margin-top: 20px;
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #ccc;
+            color: #fff;
+            border-radius: 4px;
+          }
+          
+          .custom-file-upload:hover {
+            background-color: #aaa;
+          }
+          
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+        @media (max-width: 991px) {
+            .profile-card {
+                width: 180px;
+            }
+        }
+        .profile-card {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            height:430px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+        }
+        
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-card input[type="text"],
+        .profile-card input[type="email"] {
+            width: 100%;
+            padding: 6px 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .profile-card button[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .profile-card button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .profile-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar">
+                <a href="{% url 'staff_edit1' type='is_staff' %}">staffs</a>
+                <a href="{% url 'staff_edit1' type='is_clerk' %}">clerk</a>
+                <a href="{% url 'staff_edit1' type='is_librarian' %}">librarian</a>
+                <a href="{% url 'staff_edit1' type='is_princi' %}">principal</a>
+                <a href="/backadmin">Back</a>
+            </div>
+            <div class="col-md-10 content">
+                 <div class="profile-section">
+                   {% for a in staffsview %}
+                   <div class="profile-card">
+                     <form action="/editlecturerprofile1" method="POST" enctype="multipart/form-data">
+                       {% csrf_token %}
+                       <input type="text" name="sname" style="font-weight: bold; font-size: 14px;" value="{{ a.st.first_name }}">
+                       <img class="profile-image" name="simage{{ forloop.counter }}" src="{{ a.image.url }}" alt="Image">
+                       <label for="img{{ forloop.counter }}" class="custom-file-upload">
+                         Custom Upload
+                       </label>
+                       <input type="file" id="img{{ forloop.counter }}" class="file" name="simage" style="display: none;">
+                       <input type="email" name="semail" value="{{ a.st.email }}" readonly>
+                       <input type="hidden" name="oldemail" value="{{a.st.email}}">
+                       <p><button type="submit" name="btn" value="sedit">Update</button></p>
+                     </form>
+                   </div>
+                   {% endfor %}
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

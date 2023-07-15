@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Add Book</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .bk{
+      height:37px;
+      width:100px;
+      background-color: #007bff;
+      margin-left:281px;
+      margin-top:-100px;
+      color:white;
+      border:none;
+      border-radius:5px;
+    }
+    .container {
+      margin-top: 50px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+      color: #007bff;
+      margin-bottom: 30px;
+    }
+    
+    .form-group label {
+      font-weight: bold;
+    }
+    
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: #0069d9;
+    }
+  </style>
+</head>
+<body>
+  <a href="addbook">AddBook</a>
+<div class="container">
+  <h2>Add Book</h2>
+  <form action="/addbook" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="bookId"> Accession Number:</label>
+      <input type="text" class="form-control" name="id" value="{{id}}" readonly/>
+    </div>
+    <div class="form-group">
+      <label for="bookName">Book Name:</label>
+      <input type="text" class="form-control" name="bookname" placeholder="Enter Book Name">
+    </div>
+    <div class="form-group">
+      <label for="bookImage">Book Image URL:</label>
+      <input type="file" class="form-control" name="image">
+    </div>
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" class="form-control" name="author" placeholder="Enter Author">
+    </div>
+    <div class="form-group">
+      <label for="copies">Total_Copies:</label>
+      <input type="number" class="form-control" name="copies" placeholder="Enter Number of Copies">
+    </div>
+    <div class="form-group">
+      <label for="publication">Publication:</label>
+      <input type="text" class="form-control" name="publication" placeholder="Enter Publication">
+    </div>
+    <div class="form-group">
+      <label for="booktype">Book Type:</label>
+      <select class="form-control" name="booktype">
+        <option value="Novel">Novel</option>
+        <option value="Textbook">Textbook</option>
+        <option value="storybook">StoryBook</option>
+        <option value="historyfantasy">History Fantasy</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Book</button>
+    <a href="libhome"><input type="label" class="bk" value="BACK" readonly/></a>
+      </form>
+  </form>
+   
+   
+
+ 
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+{% if messages %}
+        <script>
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    alert("{{ message }}");
+                {% endif %}
+            {% endfor %}
+        </script>
+{% endif %}
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Responsibilities and Rights</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .responsibilities-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Additional styles for responsive layout */
+        @media (min-width: 576px) {
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .rights-image {
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    {% endif %} 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Payment System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_view_marks' internal='I Internal' %}">I internal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_view_marks' internal='II Internal' %}">II internal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/extra">Fees payment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ulibhome">library</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout1">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Student Responsibilities and Rights</h1>
+        <p>As a student in college, you have certain responsibilities and rights that are important to be aware of. These include:</p>
+        
+        <h3>Responsibilities</h3>
+        <p>
+            1. Attend classes regularly and punctually.
+            <br>
+            2. Complete assignments and submit them on time.
+            <br>
+            3. Participate in class discussions and activities.
+            <br>
+            4. Respect teachers, staff, and fellow students.
+            <br>
+            5. Adhere to the college's code of conduct and policies.
+        </p>
+
+        <img class="responsibilities-image" src="static/student2.png" alt="Responsibilities Image">
+
+        <h3>Rights</h3>
+        <p>
+            1. Receive a quality education.
+            <br>
+            2. Access to necessary resources and facilities.
+            <br>
+            3. Express opinions and ideas freely.
+            <br>
+            4. Be treated fairly and without discrimination.
+            <br>
+            5. Privacy of personal information.
+        </p>
+         
+        <div class="section">
+            <h2>Help Line Numbers</h2>
+            <p>If you require any assistance or have any concerns, please contact the following helpline numbers:</p>
+            <ul>
+                <li>Student Support: 123-456-7890</li>
+                <li>Academic Services: 987-654-3210</li>
+                <li>Administrative Office: 555-123-4567</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>About Discipline</h2>
+            <p>Discipline plays a crucial role in creating a conducive learning environment. It helps in maintaining order, fostering respect, and promoting academic growth. As a student, it is essential to:</p>
+            <ul>
+                <li>Follow the college's code of conduct.</li>
+                <li>Respect your teachers and fellow students.</li>
+                <li>Attend classes regularly and be punctual.</li>
+                <li>Adhere to assignment and examination guidelines.</li>
+                <li>Engage in ethical academic practices.</li>
+            </ul>
+        </div>
+        
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        // Add event listener to navbar toggler icon
+        document.querySelector('.navbar-toggler').addEventListener('click', function() {
+            // Toggle the "show" class on the navbarNav element
+            document.querySelector('#navbarNav').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

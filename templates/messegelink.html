@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<input type="hidden" id="modal-url" value="{{ url }}">
+
+
+<button type="button" class="btn btn-primary" id="saveButton">
+    Save
+</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{ message }}</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="modal-link" class="btn btn-primary">Go to URL</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        var url = $("#modal-url").val();
+        $("#modal-link").attr("href", url);
+        $("#myModal").modal("show");
+    });
+</script>
+
+    <script>
+        $(document).ready(function() {
+            var url = $("#modal-url").val();
+    
+            $("#saveButton").click(function() {
+                $("#myModal").modal("show");
+            });
+    
+            $("#modal-link").attr("href", url);
+        });
+    </script>
+
+</body>

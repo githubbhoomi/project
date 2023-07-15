@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+        <table>
+            {%for sub in sub%}
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>{{sub.data.subject1}}</th>
+                    <th>{{sub.data.subject2}}</th>
+                    <th>{{sub.data.subject3}}</th>
+                    <th>{{sub.data.subject4}}</th>
+                    <th>{{sub.data.subject5}}</th>
+                    <th>{{sub.data.subject6}}</th>
+                    <th>{{sub.data.language}}</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid black;">{{ name }}</td>
+                        <td>
+                            <input type="text" name="mark1_{{ sub1.s.email}}" value={{sub1.subject1}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark2_{{ sub1.s.email}}" value={{sub1.subject2}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark3_{{ sub1.s.email}}" value={{sub1.subject3}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark4_{{ sub1.s.email }}" value={{sub1.subject4}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark5_{{ sub1.s.email}}" value={{sub1.subject5}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark6_{{ sub1.s.email}}" value={{sub1.subject6}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark7_{{ sub1.s.email}}" value={{sub1.languages}}>
+                        </td>
+                    </tr>
+                </tbody>                
+     {% endfor %}
+    </table>
+    <a href="/backtostudentrights">Back</a>
+</body>
+</html> 
+ 

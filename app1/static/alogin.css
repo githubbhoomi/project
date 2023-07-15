@@ -1,0 +1,155 @@
+
+.icon{
+    background-image: url(./icon1.jpg);
+    /* background-color: #ffffff; */
+    height: 100px;
+    width:100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-resolution: from-image 300dpi;
+}
+.bdy{
+    background-image: url(./desktop-wallpaper-galaxy-s7-·①-awesome-high-resolution-panda-cccp.jpg);
+    /* background: linear-gradient(to bottom,white,rgb(186, 229, 66)); */
+    background-size: cover;
+    background-repeat: repeat;
+    height: 100%;
+    image-resolution: from-image 300dpi;
+    }
+.content{
+    /* margin-left: 600px; */
+    background: linear-gradient(to bottom,white,rgb(60, 94, 154));
+    /* background-color: rgb(235, 145, 228); */
+    width: 330px;
+    border-radius: 10px;
+    padding: 40px 30px;
+    margin-top: 0px;
+    box-shadow: -3px -3px 9px #090808a2,
+          3px 3px 7px rgba(7, 7, 7, 0.671); 
+    }
+.content .text{
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    /* font-family: cursive; */
+    margin-bottom: 35px;
+    color: rgb(5, 5, 5);
+    text-shadow: 5px 5px 10px rgb(24, 5, 67)
+    }
+.content.field{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    }
+.field input{
+    height: 30px;
+    width:214px;
+    padding-left: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: #060606;
+    border: 1px solid rgba(255,255,255,0.438);
+    border-radius: 8px;
+    background: rgba(128, 11, 11, 0);
+}
+.field input::placeholder{
+    color:#060606;
+}
+.field:nth-child(2){
+    margin-top: 20px;
+}
+.field span.facebook{
+    position: absolute;
+    width: 50px;
+    margin-left: 5px;
+    line-height: 21px;
+    color: #080808;
+}
+.field span.google{
+    position: absolute;
+    width: 50px;
+    margin-left: -112px;
+    line-height: 21px;
+    color: #060000;
+}
+button{
+    margin: 25px 0 0 0;
+    width: 80%;
+    height: 40px;
+    color:rgb(6, 6, 6);
+    font-size: 15px;
+    font-weight: normal;
+    border: 2px solid rgba(255,255,255,0.438);
+    border-radius: 8px;
+    background: rgba(39, 20, 20, 0);
+    margin-top: 40px;
+    outline: none;
+    cursor:pointer;
+    border-radius: 8px;
+}
+.or{
+    color: rgba(255, 255, 255);
+    margin-top: 9px;
+}
+.icon-button{
+    margin-top: 15px;
+}
+.icon-button span{
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: rgba(244,247,250,0.795);
+    border-radius: 5px;
+    line-height: 30px;
+    background: rgba(255,255,255,0.164);
+    backdrop-filter: blur(10px);
+
+}
+.icon-button span.facebook{
+    margin-right: 17px;
+}
+
+button:hover,.icon-button span:hover{
+    background-color: #babecc8c;
+}
+.field input:hover{
+    background-color: #2f47a08c;
+}
+/* @media(max-width:400px){
+    .content{
+        width: 260px;
+    }
+    .text{
+        font-size: 20px;
+    }
+    .content.field{
+        height: 40px;
+    }
+    .field input{
+        font-size: 16px;
+    }
+    .field span{
+        position: absolute;
+        width: 80px;
+        line-height: 40px;
+    }
+    button{
+        height: 40px;
+        font-size: 17px;
+    }
+    .icon-button span{
+        padding-left: 3px;
+        padding-right: 3px;
+        padding-top: 4px;
+        font-size: 16px;
+        padding-bottom: 3px;
+    }
+    .icon-button span.facebook{
+        margin-right: 3px;
+    }
+} */
+/* background-color:rgba(255,255,255,0.13);
+backdrop-filter:blur(10px); */

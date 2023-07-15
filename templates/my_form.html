@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBJECTS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.addSubjectBtn', function(e) {
+                e.preventDefault(); // Prevent form submission
+                
+                var dropdownId = $(this).data('dropdown');
+                var newSubject = prompt('Enter the new subject:');
+                if (newSubject) {
+                    $('#' + dropdownId).append($('<option>', {
+                        value: newSubject,
+                        text: newSubject
+                    }));
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        function showConfirmationPopup() {
+      const popup = document.getElementById('confirmationPopup');
+      popup.style.display = 'block';
+        }
+
+        function closePopup(event) {
+            event.preventDefault();
+            document.getElementById('confirmationPopup').style.display = 'none';
+        }
+        function showConfirmationPopup1() {
+      const popup = document.getElementById('confirmationPopup1');
+      popup.style.display = 'block';
+        }
+
+        function closePopup1(event) {
+            event.preventDefault();
+            document.getElementById('confirmationPopup1').style.display = 'none';
+        }
+    </script>
+    <script> 
+
+        document.addEventListener('click', function(event) {
+  const dropdown = event.target.closest('.dropdown');
+  if (dropdown) {
+    dropdown.classList.toggle('active');
+  } else {
+    const activeDropdown = document.querySelector('.dropdown.active');
+    if (activeDropdown) {
+      activeDropdown.classList.remove('active');
+    }
+  }
+});
+
+    </script>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav {
+            background-color: #5bb9d1;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow:0 0 20px rgb(154,227,236)
+        }
+        
+        .course h2 {
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        
+        input[type="submit"] {
+            background-color:#0d6efd;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 170px;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+          
+        .dropdown-btn {
+            background-color: #4eb9da;
+            color: #f9f6f6;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+          
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+          
+        .dropdown-content a {
+            color: #0d053b;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+          
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+          
+        .dropdown-btn:after {
+            content: '\25BC'; /* Down arrow unicode character */
+            margin-left: 5px;
+        }
+            
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+        
+        .addSubjectBtn {
+            background-color:#9bc7d2;
+            color: #080000;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius:10px;
+            height: 20px;
+        }
+        select{
+            width: 120px;
+        }
+        .container1 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .sub1,
+    .sub2,.sub3,.sub4,.sub5,.sub6,.sub7 {
+        margin-right: 10px;
+        box-shadow: 0 0 10px rgba(2, 1, 17, 0.1);
+    }
+    .popup {
+    width:20%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #49a3d3;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    padding: 20px;
+    z-index: 9999;
+  }
+
+  .popup label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .popup .del {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #655fe3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .popup .del:hover {
+    background-color: #9f82f0;
+  }
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #c21a1a;
+    cursor: pointer;
+  }
+  .popup select{
+    width:50%;
+    height: 40px;
+  }
+  .addSubjectBtn {
+    background-color:;
+    color: #080000;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 55px;
+    height: 42px;
+}
+@media(max-width:400px){
+    .popup{
+    width:40%;
+    }
+}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+   {% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    {% endif %}  
+    <nav>
+        <a href="#" onclick="showConfirmationPopup()">Delete Mark Record</a>
+        <div class="dropdown">
+            <button class="dropdown-btn">First internals Marks</button>
+            <div class="dropdown-content">
+                <a href="{% url 'marksviewall' course='BCOM' classes='III' internals='I Internal' %}">Final year bcom</a>
+                <a href="{% url 'marksviewall' course='BCOM' classes='II' internals='I Internal' %}">Second year bcom</a>
+                <a href="{% url 'marksviewall' course='BCOM' classes='I' internals='I Internal' %}">First year bcom</a>
+                <a href="{% url 'marksviewall' course='BBA' classes='III' internals='I Internal' %}">Final year bba</a>
+                <a href="{% url 'marksviewall' course='BBA' classes='II' internals='I Internal' %}">Second year bba</a>
+                <a href="{% url 'marksviewall' course='BBA' classes='I' internals='I Internal' %}">First year bba</a>
+                <a href="{% url 'marksviewall' course='BCA' classes='III' internals='I Internal' %}">Final year bca</a>
+                <a href="{% url 'marksviewall' course='BCA' classes='II' internals='I Internal' %}">Second year bca</a>
+                <a href="{% url 'marksviewall' course='BCA' classes='I' internals='I Internal' %}">First year bca</a>
+              <!-- Add more actions/links as needed -->
+            </div><br><br>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-btn">Second internals Marks</button>
+            <div class="dropdown-content">
+                <a href="{% url 'marksviewall' course='BCOM' classes='III' internals='II Internal' %}">Final year bcom</a>
+                <a href="{% url 'marksviewall' course='BCOM' classes='II' internals='II Internal' %}">Second year bcom</a>
+                <a href="{% url 'marksviewall' course='BCOM' classes='I' internals='II Internal' %}">First year bcom</a>
+                <a href="{% url 'marksviewall' course='BBA' classes='III' internals='II Internal' %}">Final year bba</a>
+                <a href="{% url 'marksviewall' course='BBA' classes='II' internals='II Internal' %}">Second year bba</a>
+                <a href="{% url 'marksviewall' course='BBA' classes='I' internals='II Internal' %}">First year bba</a>
+                <a href="{% url 'marksviewall' course='BCA' classes='III' internals='II Internal' %}">Final year bca</a>
+                <a href="{% url 'marksviewall' course='BCA' classes='II' internals='II Internal' %}">Second year bca</a>
+                <a href="{% url 'marksviewall' course='BCA' classes='I' internals='II Internal' %}">First year bca</a>
+              <!-- Add more actions/links as needed -->
+            </div><br><br>
+        </div>
+        <!-- <a href="/updating">Update</a> -->
+        <a href="#" onclick="showConfirmationPopup1()">Update</a>
+        <a href="{% url 'student_view4' course='BCA' classes='III' %}">Student Profile</a>
+        <a href="/logout1">Logout</a>
+    </nav>
+
+    <div class="container">
+        <form method="POST" action="/my_view">
+            {% csrf_token %}
+            <div class="course">
+                <h2>Enter an Internal:</h2>
+                <input type="radio" id="I" name="internals" value="I Internal">
+                <label for="co1">I Internal</label><br>
+                <input type="radio" id="II" name="internals" value="II Internal">
+                <label for="co2">II Internal</label><br><br>
+            </div>
+            <div class="container1">
+            <div class="sub1">
+            Subject1:
+                <select name="subject1" id="subject1">
+                    <option value="c">c</option>
+                    <option value="c++">c++</option>
+                </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject1">Add subject1</button>
+        </div>
+        <div class="sub2">
+            Subject2:<select name="subject2" id="subject2">
+                <option value="php">php</option>
+                <option value="java">java</option>
+            </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject2">Add subject2</button>
+            </div>
+            <div class="sub3">
+            Subject3:<select name="subject3" id="subject3">
+                <option value="st">st</option>
+                <option value="pa">pa</option>
+            </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject3">Add subject3</button>
+            <br><br></div>
+            <div class="sub4">
+            Subject4:<select name="subject4" id="subject4">
+                <option value="sci">sci</option>
+                <option value="web">web</option>
+            </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject4">Add subject4</button></div>
+            <div class="sub5">
+            Subject5:<select name="subject5" id="subject5">
+                <option value="dbms">dbms</option>
+                <option value="ds">ds</option>
+            </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject5">Add subject5</button>
+        </div><br>
+            <div class="sub6">
+            Subject6:<select name="subject6" id="subject2">
+                <option value="First language">First language</option>
+            </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject6">Add subject6</button>
+        </div>
+            <div class="sub7">
+            Subject7:<select name="language">
+                <option value="second language">second language</option>
+            </select><br><br>
+            <button class="addSubjectBtn" data-dropdown="subject7">Add subject7</button>
+        </div></div>
+            <input type="hidden" name="classes" value="{{ classes }}"> 
+            <input type="hidden" name="course" value="{{ course }}">
+           <input type="submit" name="btn1" value="Submit"> 
+        </form> 
+    </div> 
+    <form id="login-form" class="form-login" method="POST" action="/delete_marks">
+        {% csrf_token %}
+        <div class="popup" id="confirmationPopup" style="display: none;">
+        <button class="close-button" onclick="closePopup(event)">&times;</button>
+        <h2 class="text-center">DELETE</h2>
+        <div class="form-group">
+            <label for="classes">Select Class:</label>
+            <select id="classes" name="classes" class="form-control">
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" class="form-control">
+                <option value="BCA">BCA</option>
+                <option value="BBA">BBA</option>
+                <option value="BCOM">BCOM</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="internals">Select Internal:</label>
+            <select id="internals" name="internals" class="form-control">
+                <option value="I Internal">I Internal</option>
+                <option value="II Internal">II Internal</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-login">Delete</button>
+    </div>
+    </form>
+    <form id="login-form" class="form-login" method="POST" action="/update_marks">
+        {% csrf_token %}
+        <div class="popup" id="confirmationPopup1" style="display: none;">
+            <button class="close-button" onclick="closePopup1(event)">&times;</button>
+        <h2 class="text-center">UPDATE</h2>
+        <div class="form-group">
+            <label for="classes">Select Class:</label>
+            <select id="classes" name="classes" class="form-control">
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" class="form-control">
+                <option value="BCA">BCA</option>
+                <option value="BBA">BBA</option>
+                <option value="BCOM">BCOM</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="internals">Select Internal:</label>
+            <select id="internals" name="internals" class="form-control">
+                <option value="I Internal">I Internal</option>
+                <option value="II Internal">II Internal</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-login">View</button>
+    </form>
+    
+</body>
+</html>
+

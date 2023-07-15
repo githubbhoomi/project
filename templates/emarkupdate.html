@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f0f6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            margin: 20px auto;
+            margin-left: -140px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgb(154, 227, 236);
+            width: 100%;
+        }
+        
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+        }
+        
+        thead {
+            background-color: #b5d8eb;
+            color: #ffffff;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #cdeaee;
+        }
+        
+        input[type="text"] {
+            width: 80px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+        
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4655c5;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #245bdc;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #211ef0;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        
+        .back-button i {
+            margin-right: 5px;
+        }
+        #message-container {
+            background-color: #e0f7d8;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        #message-container p {
+            color: #227f33;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+{% if message %}
+    <div class="alert alert-success" role="alert">
+        {{ message|safe }}
+    </div>
+{% endif %} 
+
+    <div class="container">
+        <a href="/backtomy_form" class="back-button"><i class="fas fa-chevron-left"></i>Back</a>
+        <h1>Student Marks</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>STUDENT NAME</th>
+                        <th>{{ subject1 }}</th>
+                        <th>{{ subject2 }}</th>
+                        <th>{{ subject3 }}</th>
+                        <th>{{ subject4 }}</th>
+                        <th>{{ subject5 }}</th>
+                        <th>{{ subject6 }}</th>
+                        <th>{{ subject7 }}</th>
+                </tr>
+            </thead>       
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.s.first_name }}</td>
+                    {% for mark in marks %}
+                    <form method="POST" action="/updateit">
+                        {% csrf_token %}
+                        {% if mark.s1 == student %}
+                            <td><input type="text" value="{{ mark.subject1 }}" name="sub1"></td>
+                            <td><input type="text" value="{{ mark.subject2 }}" name="sub2"></td>
+                            <td><input type="text" value="{{ mark.subject3 }}" name="sub3"></td>
+                            <td><input type="text" value="{{ mark.subject4 }}" name="sub4"></td>
+                            <td><input type="text" value="{{ mark.subject5 }}" name="sub5"></td>
+                            <td><input type="text" value="{{ mark.subject6 }}" name="sub6"></td>
+                            <td><input type="text" value="{{ mark.languages }}" name="sub7"></td>
+                            <input type="hidden" name="email" value="{{ student.s.email }}">
+                            <input type="hidden" name="internal" value="{{ internals }}">
+                            <input type="hidden" name="classes" value="{{ classes }}">
+                            <input type="hidden" name="course" value="{{ course }}">
+                            <td><input type="submit" name="btn1" value="edit"></td>
+                            <td><input type="submit" name="btn1" value="sendmail"></td>
+                        {% endif %}
+                    {% endfor %}
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+   </body>
+</html>
+

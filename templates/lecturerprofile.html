@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Profiles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .profile-heading {
+            text-align: center;
+            font-weight: bold;
+            font-size: 44px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .profile-card {
+            background-color: rgb(148, 172, 233);
+            border: 0px solid;
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+        }
+        .profile-image {
+            width: 100%;
+            height: 250px;
+            position: static;
+        }
+        .sidebar {
+            padding: 20px;
+            background-color: #ccd6f5;
+            position: fixed;
+            height: 100%;
+        }
+        .sidebar a {
+            display: block;
+            color: #110202;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        p, h1 {
+            color: rgb(13, 12, 12);
+        }
+        .content {
+            margin-left: 220px; /* Adjust this value to provide space for the sidebar */
+        }
+        .profile-section {
+            margin-top: 30px;
+            display: flex; /* Use flexbox */
+            flex-wrap: wrap; /* Allow cards to wrap to the next line if necessary */
+            justify-content: center; /* Center the cards horizontally */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+        @media (max-width: 991px) {
+            .profile-card {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar">
+                
+                <a href="{% url 'lviewbca' course='BCA'%}">BCA Lecturer</a>
+                <a href="{% url 'lviewbca' course='BBA'%}">BBA Lecturer</a>
+                <a href="{% url 'lviewbca' course='BCOM'%}">BCOM Lecturer</a>
+                <a href="{% url 'staffsview' type='is_staff'%}">Accountant</a>
+                <a href="{% url 'staffsview' type='is_librarian'%}">Librarian</a>
+                <a href="{% url 'staffsview' type='is_princi'%}">Principal</a>
+                <!-- <a href="/staffsview"></a> -->
+                <a href="{% url 'staffsview' type='is_clerk'%}">Clerk</a>
+                <!-- <a href="/clerkview">Clerk</a> -->
+                <a href="/logout1">Back</a>
+            </div>
+            <div class="col-md-10 content">
+                <div class="profile-heading">
+                    Lecturer Profiles
+                </div>
+                <div class="profile-section">
+                    {% for a in lecturerinfo_bca %}
+                    <div class="profile-card">
+                        <h1 style="font-weight: bold; font-size: 24px;">Name: {{ a.le.first_name }}</h1>
+                        <img class="profile-image" src="{{ a.image.url }}" alt="Image">
+                        <p>Course: {{ a.course }}</p>
+                        <p>Class: {{ a.classes }}</p>
+                        <p>Email: {{ a.le.email }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="profile-section">
+                    {% for a in lecturerinfo_bba %}
+                    <div class="profile-card">
+                        <h1 style="font-weight: bold; font-size: 24px;">Name: {{ a.le.first_name }}</h1>
+                        <img class="profile-image" src="{{ a.image.url }}" alt="Image">
+                        <p>Course: {{ a.course }}</p>
+                        <p>Class: {{ a.classes }}</p>
+                        <p>Email: {{ a.le.email }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="profile-section">
+                    {% for a in lecturerinfo_bcom %}
+                    <div class="profile-card">
+                        <h1 style="font-weight: bold; font-size: 24px;">Name: {{ a.le.first_name }}</h1>
+                        <img class="profile-image" src="{{ a.image.url }}" alt="Image">
+                        <p>Course: {{ a.course }}</p>
+                        <p>Class: {{ a.classes }}</p>
+                        <p>Email: {{ a.le.email }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="profile-section">
+                    {% for a in staffsview %}
+                    <div class="profile-card">
+                        <h1 style="font-weight: bold; font-size: 24px;">Name: {{ a.st.first_name }}</h1>
+                        <img class="profile-image" src="{{ a.image.url }}" alt="Image">
+                        <p>Email: {{ a.st.email }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="profile-section">
+                    {% for a in clerkview %}
+                    <div class="profile-card">
+                        <h1 style="font-weight: bold; font-size: 24px;">Name: {{ a.st.first_name }}</h1>
+                        <img class="profile-image" src="{{ a.image.url }}" alt="Image">
+                        <p>Email: {{ a.st.email }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+

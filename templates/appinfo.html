@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Management</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+    }
+    
+    .table-responsive {
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="head">
+      <h2 class="text-center">APPLIED STUDENT DETAILS</h2>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Aadhar Number</th>
+            <th>Date of Birth</th>
+            <th>Place of Birth</th>
+            <th>Caste</th>
+            <th>Category</th>
+            <th>Parents' Name</th>
+            <th>Parent Number</th>
+            <th>Occupation</th>
+            <th>Income</th>
+            <th>Address</th>
+            <th>Course</th>
+            <th>Language</th>
+            <th>Registration Number</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in applist %}
+          <tr>
+            <td>{{s.name}}</td>
+            <td>{{s.lastname}}</td>
+            <td>{{s.contact_no}}</td>
+            <td>{{s.email_id}}</td>
+            <td>{{s.gender}}</td>
+            <td>{{s.adharno}}</td>
+            <td>{{s.dob}}</td>
+            <td>{{s.place_of_birth}}</td>
+            <td>{{s.caste}}</td>
+            <td>{{s.category}}</td>
+            <td>{{s.parents_name}}</td>
+            <td>{{s.parent_no}}</td>
+            <td>{{s.occupation}}</td>
+            <td>{{s.income}}</td>
+            <td>{{s.address}}</td>
+            <td>{{s.course}}</td>
+            <td>{{s.language}}</td>
+            <td>{{s.regno}}</td>
+            <td>{{s.pay}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

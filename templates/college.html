@@ -1,0 +1,128 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>RAB College</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: rgba(242, 242, 242, 1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background-color:#c8d9e0;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background-color: #c8d9e0;
+            padding: 20px;
+            
+            border-radius: 15px;
+        }
+
+        .principal-img {
+            margin-top: 30px;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+        }
+
+        h1, h2, h3 {
+            color: navy;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" style="border-radius:10px;">
+            <h1 style="font-weight:bold;font-size:30px;">RAB COLLEGE</h1>
+            <h2><p>Welcome to our college website</p><h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img src="{% static 'clgimg.jpeg' %}" alt="Image 1" class="img-fluid cover-image"><br><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section">
+                    <h2>Kundapura Education Society:</h2>
+                    <p>
+                        Education Society was established in 1975, has four institutions to its credit, that imparts quality
+                        education to all sections of the society regardless of caste, creed or colour. It has grown from disseminating
+                        quality education from the level of Nursery to offering Degree Programs in the heart of the city through its institutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section">
+                    <h2>Establishment, Leadership, and Campus Facilities:</h2>
+                    <p>
+                        Dr. RAB First Grade College, Kundapura, affiliated to the Mangalore University, was established in the year
+                        2010 under the aegis of Coondapur Education Society (R.) with a desire to provide quality degree education
+                        for building the future generation for a better tomorrow.
+                        <br>The campus, located by the side of the Varahi river, spreading over 2.13 acres of land, surrounded by lush
+                        greenery gives an experience of great delight. The campus presents an excellent learning atmosphere with an imposing
+                        new building, spacious and well-furnished classrooms, audio-visual hall, computer science, physics & chemistry laboratories,
+                        commerce laboratory, auditorium with a seating capacity of 1500 students, state of the art library, separate recreation
+                        rooms for men and women students, modern restrooms, canteen, free local transport, medical examination, adequate ICT facilities,
+                        adequate provision for sports and games with well-laid sports ground, water coolers, shuttle badminton court, CCTV Cameras, numerous
+                        forums and associations for all-round development of the students, and above all competent and committed faculty.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="section">
+                    <h2>Principal Review:</h2>
+                    <img src="{% static 'prin.jpg' %}" alt="Principal" class="img-fluid principal-img">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="section">
+                    <p>
+                        We are strategically located on a 2.13 acres' campus in Kundapura with a modern
+                        building which has a wide range of specialized facilities and resources. I am very
+                        proud of the exceptionally skilled teaching faculty who are engaging students in a wide
+                        range of exciting learning opportunities.<br><br>
+
+                        We are committed to providing quality education by equipping our students with skills,
+                        confidence, and a positive approach. The college is relentlessly striving to perceive
+                        and maintain academic excellence while encouraging the students to participate
+                        in various co-curricular and extra-curricular activities. An amiable environment at RAB
+                        nurtures creativity, passion, resilience, and leadership qualities among students for
+                        the development of a versatile, commendable personality. Thus, the College encourages the
+                        students to realize their dreams and achieve their goals. I am delighted to welcome you
+                        once again to visit and experience the plethora of opportunities in an enhanced learning
+                        environment.
+                    </p>
+                </div>
+            </div>
+            <a href="/logout1" style="color:blue;font-size:20px;">Back</a>
+        </div>
+        <hr>
+        <marquee behavior="scroll" direction="left" style="color:black;font-weight:bold;">Visit our campus for more details..!</marquee>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

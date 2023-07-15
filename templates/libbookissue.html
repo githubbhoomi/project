@@ -1,0 +1,339 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Book Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#search-input').on('input', function() {
+              var query = $(this).val();
+              if (query.length >= 1) {
+                  $.ajax({
+                      url: '/autocomplete/',
+                      data: {
+                          'q': query
+                      },
+                      success: function(data) {
+                          var autocompleteList = $('#autocomplete-list');
+                          autocompleteList.empty();
+                          if (data.length > 0) {
+                              data.forEach(function(item) {
+                                  var listItem = $('<li></li>').text(item);
+                                  autocompleteList.append(listItem);
+                              });
+                          } else {
+                              var listItem = $('<li class="text-muted"></li>').text('No results found.');
+                              autocompleteList.append(listItem);
+                          }
+                          autocompleteList.show();
+                      }
+                  });
+              } else {
+                  $('#autocomplete-list').hide();
+              }
+          });
+
+          // Trigger search when selecting an item from autocomplete list
+          $('#autocomplete-list').on('click', 'li', function() {
+              var selectedItem = $(this).text();
+              $('#search-input').val(selectedItem);
+              $('#search-results').empty();
+              $('#autocomplete-list').hide();
+              searchBooks(selectedItem);
+          });
+          // Search books based on input
+          function searchBooks(query) {
+              $.ajax({
+                  url: '/search/',
+                  data: {
+                      'q': query
+                  },
+                  success: function(data) {
+                      var searchResults = $('#search-results');
+                      searchResults.empty();
+                      if (data.length > 0) {
+                          data.forEach(function(book) {
+                              var bookInfo = '<div class="book-profile">' +
+                                  '<h4>' + book.bookname + '</h4>' +
+                                  '<p>ID: ' + book.bookid + '</p>' +
+                                  '<p>Author: ' + book.author + '</p>' +
+                                  '<p>Borrower: ' + book.borrower + '</p>' +
+                                  '<form action="/myview" method="POST">' +
+                                  '{% csrf_token %}' +
+                                  '<input type="hidden" name="bookid" value="' + book.bookid + '">' +
+                                  '<p class="card-text"><b>Issue to: </b><input type="text" name="borrower" value="' + book.borrower + '" required></p>' +
+                                  '<button type="submit" class="btn btn-primary mr-2" name="btn" value="issue">Issue</button>' +
+                                  '<button type="submit" class="btn btn-secondary" name="btn" value="return">Return</button>' +
+                                  '</form>' +
+                                  '</div>';
+                              searchResults.append(bookInfo);
+                          });
+                      } else {
+                          searchResults.html('<p>No results found.</p>');
+                      }
+                  }
+              });
+          }
+      });
+  </script>
+    <script>
+      function showConfirmationPopup() {
+        const popup = document.getElementById('confirmationPopup');
+        popup.style.display = 'block';
+          }
+  
+          function closePopup(event) {
+              event.preventDefault();
+              document.getElementById('confirmationPopup').style.display = 'none';
+          }
+          function showConfirmationPopup1() {
+            const popup = document.getElementById('confirmationPopup1');
+            popup.style.display = 'block';
+              }
+              function closePopup1(event) {
+                event.preventDefault();
+                document.getElementById('confirmationPopup1').style.display = 'none';
+            }
+        </script> 
+    <style>
+        .card {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-img-top {
+            height: 200px; 
+            object-fit: cover; 
+        }
+
+        .card-body {
+            height: 200px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 14px;
+        }
+        .popup {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #f7f7f7;
+          border-radius: 5px;
+          box-shadow: 0px 0px 5px #ccc;
+          padding: 20px;
+          z-index: 9999;
+        }
+      
+        .popup label {
+          display: block;
+          margin-bottom: 10px;
+        }
+      
+        .popup input[type="email"] {
+          width: 90%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-bottom: 10px;
+        }
+      
+        .popup .del {
+          display: block;
+          width: 100%;
+          padding: 10px;
+          background-color: #655fe3;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      
+        .popup .del:hover {
+          background-color: #9f82f0;
+        }
+        .close-button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 24px;
+          background: none;
+          border: none;
+          color: #c21a1a;
+          cursor: pointer;
+          background-color: #f0f0f0;
+        }
+        .autocomplete {
+          position: relative;
+      }
+
+      #autocomplete-list {
+          position: absolute;
+          z-index: 1000;
+      }
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar">     
+        <a href="{% url 'libbook_view' type='Novel' %}" class="nav-link">Novel</a>
+        <a href="{% url 'libbook_view' type='Textbook' %}" class="nav-link">Textbook</a>
+        <a href="{% url 'libbook_view' type='storybook' %}" class="nav-link">StoryBook</a>
+        <a href="{% url 'libbook_view' type='historyfantasy' %}" class="nav-link">History Fantasy</a>
+        <a href="{% url 'libbook_view' type='Others' %}" class="nav-link">Others</a> 
+
+        {% comment %} <a href="/logout1" class="nav-link">Logout</a> {% endcomment %}
+        <a href="/libhome" class="nav-link">Back</a>
+      </div>
+      <div class="col-md-10 content">
+        <div class="profile-heading" style="font-size:0px;text-align:center;font-weight:bold;">
+          Book Details
+        </div>
+        <div class="container">
+          <h1>Book Search</h1>
+          <div class="autocomplete">
+              <input type="text" id="search-input" class="form-control" placeholder="Search for books...">
+              <ul id="autocomplete-list" class="list-group"></ul>
+          </div><br><br><br>
+          <div id="search-results"></div>
+      </div>
+        <div class="profile-section">
+          <div class="row">
+            {% for a in books %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card">
+                <h1 style="font-weight: bold; font-size: 24px;"><b>Accession No: </b>{{ a.bookid }}</h1>
+                <img class="card-img-top img-fluid" src="{{ a.bookimg.url }}" alt="Image">
+                <div class="card-body">
+                  <p class="card-title">{{ a.bookname }}</p>
+                  <p class="card-text"><b>Author: </b>{{ a.author }}</p>
+                  <p class="card-text"><b>Available Copies: </b>{{ a.copies }}</p>
+                  <p class="card-text"><b>Total_Copies: </b>{{ a.total_copies }}</p>
+                  <p class="card-text"><b>Publication: </b>{{ a.publication }}</p>
+                  
+                  <input type="hidden" name="bookid" value="{{ a.bookid }}">
+                    {% comment %} <p class="card-text"><b>Borrower: </b><input type="text" name="borrower" value="{{a.borrower}}" ></p> {% endcomment %}
+                  <p class="card-text"><b>Borrower: </b><textarea name="borrower"value={{ a.borrower }}>{{ a.borrower|striptags|linebreaksbr }}</textarea></p>
+
+                    {% comment %} <button type="submit" class="btn btn-primary mr-2" name="btn" value="b1" >{{a.status}}</button> {% endcomment %}
+                    {% comment %} <button type="submit" class="btn btn-secondary" name="btn" value="b2"  style="background-color:#007bff;">Return</button> {% endcomment %}
+                    {% comment %} <a href="#" onclick="showConfirmationPopup1('{{a.bookid}}')">Issuebook</a>
+                    <a href="#" onclick="showConfirmationPopup()">Return book</a> {% endcomment %}
+                  <button type="button" class="btn btn-primary mr-2" onclick="showConfirmationPopup1('{{ a.bookid }}')">Issue book</button>
+                  <button type="button" class="btn btn-secondary" onclick="showConfirmationPopup('{{ a.bookid }}')">Return book</button>
+                  <a href="{% url 'removebook' id=a.bookid %}" class="nav-link">Delete</a>
+
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <form method="post" action="{% url 'myview1' %}">
+      {% csrf_token %}
+      <div class="popup" id="confirmationPopup" style="display: none;">
+        <button class="close-button" onclick="closePopup(event)">&times;</button>
+        <input type="hidden" id="returnBookId" name="bookid">
+        <label for="email">Enter email:</label>
+        <input type="email" id="returnEmail" name="email">
+        <button class="del" name="btn" type="submit" value="b2">Return</button>
+      </div>
+    </form>  
+  
+    <!-- Confirmation popup for issuing book -->
+    <form method="post" action="{% url 'myview1' %}">
+      {% csrf_token %}
+      <div class="popup" id="confirmationPopup1" style="display: none;">
+        <button class="close-button" onclick="closePopup1(event)">&times;</button>
+        <input type="hidden" id="issueBookId" name="bookid">
+        <label for="email">Enter email:</label>
+        <input type="email" id="issueEmail" name="email">
+        <button class="del" name="btn" type="submit" value="b1">Issue</button>
+      </div>
+    </form> 
+
+  <!-- Include Bootstrap JS (optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+<script>
+  $(document).ready(function() {
+      // Search bar input event listener
+      $('#search-bar').on('input', function() {
+          var query = $(this).val();
+          if (query.length >= 1) {
+              $.ajax({
+                  url: '/books/search/',
+                  data: { q: query },
+                  success: function(data) {
+                      $('.card').hide(); // Hide all cards
+                      $.each(data, function(index, book) {
+                          $('.card:contains("' + book.bookname + '")').show(); // Show matching cards
+                      });
+                  }
+              });
+          } else {
+              $('.card').show(); // Show all cards if search bar is empty
+          }
+      });
+  });
+</script>
+<script>
+  function showConfirmationPopup(bookId) {
+    const popup = document.getElementById('confirmationPopup');
+    const returnBookIdInput = document.getElementById('returnBookId');
+    returnBookIdInput.value = bookId;
+    popup.style.display = 'block';
+  }
+
+  function closePopup(event) {
+    event.preventDefault();
+    document.getElementById('confirmationPopup').style.display = 'none';
+  }
+
+  function showConfirmationPopup1(bookId) {
+    const popup = document.getElementById('confirmationPopup1');
+    const issueBookIdInput = document.getElementById('issueBookId');
+    issueBookIdInput.value = bookId;
+    popup.style.display = 'block';
+  }
+
+  function closePopup1(event) {
+    event.preventDefault();
+    document.getElementById('confirmationPopup1').style.display = 'none';
+  }
+</script>
+{% if messages %}
+        <script>
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    alert("{{ message }}");
+                {% endif %}
+            {% endfor %}
+        </script>
+{% endif %}
+</html> 
+

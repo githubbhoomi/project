@@ -1,0 +1,289 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/update_marks">
+        {% csrf_token %}
+        <table>
+            {%for subs in sub%}
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>{{subs.data.subject1}}</th>
+                    <th>{{subs.data.subject2}}</th>
+                    <th>{{subs.data.subject3}}</th>
+                    <th>{{subs.data.subject4}}</th>
+                    <th>{{subs.data.subject5}}</th>
+                    <th>{{subs.data.subject6}}</th>
+                    <th>{{subs.data.language}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for student in sub1%}
+                    <tr>
+                        <td style="border: 1px solid black;">{{ student.s1.s.firstname }}</td>
+                        <td>
+                            <input type="text" name="mark1_{{ student.s.email}}" value={{student.subject1}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark2_{{ student.s.email}}" value={{student.subject2}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark3_{{ student.s.email}}" value={{student.subject3}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark4_{{ student.s.email }}" value={{student.subject4}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark5_{{ student.s.email}}" value={{student.subject5}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark6_{{ student.s.email}}" value={{student.subject6}}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark7_{{ student.s.email}}" value={{student.languages}}>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>                
+     
+    </table>
+    <input type="hidden" name="classes" value="{{ classes }}"> 
+    <input type="hidden" name="course" value="{{ course }}"> 
+    <input type="hidden" name="internals" value="{{ internals }}">
+    <button type="submit">Update</button>
+</form>
+    <a href="/logout1">Back</a>
+</body>
+</html> 
+  {% endcomment %}
+  {% comment %} <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+          table {
+              border-collapse: collapse;
+              width: 100%;
+              border: 1px solid black;
+          }
+  
+          th,
+          td {
+              border: 1px solid black;
+              padding: 8px;
+              text-align: left;
+          }
+  
+          th {
+              background-color: lightgray;
+              border: 1px solid black;
+          }
+  
+          tr:nth-child(even) {
+              background-color: #f2f2f2;
+              border: 1px solid black;
+          }
+  
+          tr:nth-child(odd) {
+              background-color: #f2f2f2;
+              border: 1px solid black;
+          }
+      </style>
+  </head>
+  
+  <body>
+      <div style="overflow-x:auto;">
+          <form method="POST" action="/update_marks">
+              {% csrf_token %}
+              <table>
+                  {% for subs in sub %}
+                  <thead>
+                      <tr>
+                          <th>Student Name</th>
+                          <th>{{ subs.data.subject1 }}</th>
+                          <th>{{ subs.data.subject2 }}</th>
+                          <th>{{ subs.data.subject3 }}</th>
+                          <th>{{ subs.data.subject4 }}</th>
+                          <th>{{ subs.data.subject5 }}</th>
+                          <th>{{ subs.data.subject6 }}</th>
+                          <th>{{ subs.data.language }}</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for student in sub1 %}
+                      <tr>
+                          <td style="border: 1px solid black;">{{ student.s1.s.firstname }}</td>
+                          <td>
+                              <input type="text" name="mark1_{{ student.s.email }}" value={{ student.subject1 }}>
+                          </td>
+                          <td>
+                              <input type="text" name="mark2_{{ student.s.email }}" value={{ student.subject2 }}>
+                          </td>
+                          <td>
+                              <input type="text" name="mark3_{{ student.s.email }}" value={{ student.subject3 }}>
+                          </td>
+                          <td>
+                              <input type="text" name="mark4_{{ student.s.email }}" value={{ student.subject4 }}>
+                          </td>
+                          <td>
+                              <input type="text" name="mark5_{{ student.s.email }}" value={{ student.subject5 }}>
+                          </td>
+                          <td>
+                              <input type="text" name="mark6_{{ student.s.email }}" value={{ student.subject6 }}>
+                          </td>
+                          <td>
+                              <input type="text" name="mark7_{{ student.s.email }}" value={{ student.languages }}>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                      {% endfor %}
+                  </tbody>
+              </table>
+              <input type="hidden" name="classes" value="{{ classes }}">
+              <input type="hidden" name="course" value="{{ course }}">
+              <input type="hidden" name="internals" value="{{ internals }}">
+              <button type="submit">Update</button>
+          </form>
+      </div>
+      <a href="/logout1">Back</a>
+  </body>
+  
+  </html>
+   {% endcomment %}
+
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+
+        @media only screen and (max-width: 600px) {
+            table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div style="overflow-x:auto;">
+            {% csrf_token %}
+            <table>
+                {% for subs in sub %}
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>{{ subs.data.subject1 }}</th>
+                        <th>{{ subs.data.subject2 }}</th>
+                        <th>{{ subs.data.subject3 }}</th>
+                        <th>{{ subs.data.subject4 }}</th>
+                        <th>{{ subs.data.subject5 }}</th>
+                        <th>{{ subs.data.subject6 }}</th>
+                        <th>{{ subs.data.language }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in sub1 %}
+                    <tr>
+                        <td style="border: 1px solid black;">{{ student.s1.s.first_name}}</td>
+                        <td>
+                            <input type="text" name="mark1_{{ student.s.email }}" value={{ student.subject1 }}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark2_{{ student.s.email }}" value={{ student.subject2 }}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark3_{{ student.s.email }}" value={{ student.subject3 }}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark4_{{ student.s.email }}" value={{ student.subject4 }}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark5_{{ student.s.email }}" value={{ student.subject5 }}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark6_{{ student.s.email }}" value={{ student.subject6 }}>
+                        </td>
+                        <td>
+                            <input type="text" name="mark7_{{ student.s.email }}" value={{ student.languages }}>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <input type="hidden" name="classes" value="{{ classes }}">
+            <input type="hidden" name="course" value="{{ course }}">
+            <input type="hidden" name="internals" value="{{ internals }}">
+        </form>
+    </div>
+    <a href="/backtomy_form">Back</a>
+</body>
+
+</html>

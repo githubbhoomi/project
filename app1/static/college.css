@@ -1,0 +1,49 @@
+.hd{
+    background-color:gray;
+    font-style: initial;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(7, 6, 6);
+}
+.abt
+{
+    background-color: whitesmoke;
+    font-family:'Times New Roman', Times, serif;
+    color:blue;
+    font-size: large;
+
+}
+.camp{
+    background-color: whitesmoke;
+    font-family:'Times New Roman', Times, serif;
+    color:blue;
+    font-size: large;
+    font-weight: 100 ;
+
+}
+.princ{
+    background-color: whitesmoke;
+    font-family:'Times New Roman', Times, serif;
+    color:blue;
+    font-size: medium;
+
+}
+.img1{
+    
+    margin-top: -328px;
+    margin-left:744px ;
+}
+.info{
+    background-color: whitesmoke;
+    color: black;
+    font-size: larger;
+}
+.camp1
+{
+    background-color:whitesmoke;
+    color: black;
+}
+.princi1{
+    background-color:whitesmoke;
+    color: black;
+}

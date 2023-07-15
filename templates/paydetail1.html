@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            margin-top: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Payment System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/backtostudentrights">Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Welcome, {{ name }}. Thanks for logging in.</h2>
+        <form method="POST" action="/spaydet">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="{{ name }}" readonly>
+
+            <label for="total">Total Fees:</label>
+            <input type="number" id="total" name="total" value="{{ total }}" readonly>
+            
+            <label for="remain">Remaining Fees:</label>
+            <input type="number" id="remain" name="remain" value="{{ remain }}" readonly>
+            
+            <label for="pay">Amount to Pay:</label>
+            <input type="number" id="pay" name="pay" required>
+            
+            <input type="submit" value="Pay Fees">
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        // Handle navigation toggler behavior
+        var navToggler = document.querySelector('.navbar-toggler');
+        var navbarNav = document.querySelector('.navbar-collapse');
+
+        navToggler.addEventListener('click', function() {
+            if (navbarNav.classList.contains('show')) {
+                navbarNav.classList.remove('show');
+            } else {
+                navbarNav.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .navbar {
+      background-color: #343a40;
+    }
+    .navbar-brand {
+      color: #fff;
+      font-size: 24px;
+    }
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-size: 18px;
+    }
+    .jumbotron {
+      height: 880px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: black;
+    }
+    .jumbotron h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .jumbotron p {
+      font-size: 24px;
+    }
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .container {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .main{
+      margin-top: -150px;
+    }
+  
+    img {
+      height: 300px;
+      width: 300px;
+      float: left;
+      border: solid 5px rgb(175, 167, 167);
+      padding: 5px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 767px) {
+      .jumbotron {
+        height: auto;
+        padding-top: 250px;
+      }
+    .navbar navbar-expand-lg navbar-dark sticky-top{
+      height:100px;
+      background-position: relative;
+
+    }
+      img {
+        height: 200px;
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+      }
+      .main{
+        margin-top: -300px;
+        padding-top: -90px;
+        background-position: relative;
+      }
+      .navbar-nav {
+        flex-direction: column;
+      }
+      .navbar-nav .nav-item {
+        margin-bottom: 10px;
+      }
+    }
+  
+    @media (min-width: 768px) and (max-width: 991px) {
+      .jumbotron {
+        height: 700px;
+        margin-top: 100px;
+      }
+      
+      .jumbotron.container {
+        padding-top: 150px;
+        background-position: relative;
+      }
+    }  
+  </style>
+
+<body>
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Lab Website</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/logout1">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#computer">Computer Lab</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#physics">Physics Lab</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#chemistry">Chemistry Lab</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav><br><br>
+  
+  <div class="main">
+    <!-- Jumbotron - Computer Lab -->
+    <div id="computer" class="jumbotron">
+      <div class="container">
+        <h1>Computer Lab</h1>
+        <p>A computer science lab is a dedicated space equipped with computers and other technological resources for conducting experiments, research, and practical exercises related to the field of computer science. In a computer science lab, students and researchers can work on coding, software development, data analysis, artificial intelligence, networking, and various other areas of computer science. They can run simulations, test algorithms, develop software applications, and explore the theoretical and practical aspects of computing.</p><br>
+        <img src="static/labimages/c1.jpeg" alt="img" />
+        <img src="static/labimages/c6.jpg" alt="img" />
+        <img src="static/labimages/c3.jpg" alt="img" />
+        <img src="static/labimages/c7.jpg" alt="img" />
+      </div>
+    </div><br><br>
+  
+    <div id="physics" class="jumbotron">
+      <div class="container">
+        <h1>Physics Lab</h1>
+        <p> A physics lab is a dedicated space equipped with scientific instruments and equipment for conducting experiments and practical demonstrations in the field of physics. In a physics lab, students can study and explore various laws and principles of physics through hands-on experiments. They can conduct experiments related to mechanics, optics, electricity, magnetism, thermodynamics, and other branches of physics. They can measure physical quantities, verify theoretical predictions, analyze data, and gain practical insights into the fundamental concepts of the discipline.</p><br>
+        <img src="static/labimages/phy1.webp" alt="img" />
+        <img src="static/labimages/phy2.webp" alt="img" />
+        <img src="static/labimages/phy4.jpeg" alt="img" />
+        <img src="static/labimages/phy5.webp" alt="img" />
+      </div>
+    </div><br><br><br><br>
+
+    <!-- Page Content - Chemistry Lab -->
+    <div id="chemistry" class="jumbotron">
+      <div class="container">
+        <h2>Chemistry Lab</h2>
+        <p>A chemistry lab is a specialized facility designed for conducting experiments and investigations in the field of chemistry. It is equipped with a wide range of apparatus, chemicals, and instruments necessary for chemical analysis and synthesis. In a chemistry lab, students and researchers can perform experiments to study chemical reactions, identify substances, analyze samples, measure properties such as pH and temperature, and explore various concepts and principles of chemistry. They can also learn about safety protocols and good laboratory practices.</p><br>
+        <img src="static/labimages/chem3.webp" alt="img" />
+        <img src="static/labimages/chem4.webp" alt="img" />
+        <img src="static/labimages/chem5.webp" alt="img" />
+        <img src="static/labimages/chem6.webp" alt="img" />
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

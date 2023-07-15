@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding-top: 100px;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="checkotp">
+            {% csrf_token %}
+            <input type="text" name="eotp" placeholder="Enter the OTP" required><br><br>
+            <input type="submit" value="Submit">
+            <input type="hidden" name="otp" value="{{ otp }}"> 
+        </form>
+       <br> <button type="submit" class="btn btn-primary" style="width:77px;height:35px;background-color:#007bff;"><a href="/forgot" style="color:white;text-decoration: none;">Back</a></button>
+    </div>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

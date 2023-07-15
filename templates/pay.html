@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST" action="/pay" class="container">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <br><br>
+                <h3 class="text-center">Application fee is 100rs</h3>
+                <br>
+                <div class="mb-3">
+                    <label for="rs" class="form-label">Enter Rs to pay:</label>
+                    <input type="text" name="rs" class="form-control" required>
+                </div>
+                <br><br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">PAY</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    {% endif %}
+</html>

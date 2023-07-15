@@ -1,0 +1,362 @@
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>College Management</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+   <style>
+       @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+  
+     /* Custom styles go here */
+     
+     *{
+       background-color: rgba(242, 242, 242, 1);
+     }
+     body {
+       background-color: rgba(242, 242, 242, 1);
+       
+     }
+     
+     
+     .logo {
+       width: 266px;
+       height: auto;
+       margin-top: -750px;
+       border-radius: 300px;
+       margin-left: 50px;
+     }
+    
+     @keyframes circularMotion {
+       0% {
+         transform: rotate(0deg) translate(150px) rotate(0deg);
+       }
+       100% {
+         transform: rotate(360deg) translate(150px) rotate(-360deg);
+       } 
+     }
+     
+     .tag {
+       height: 550px;
+       text-align: center;
+       background-color: rgba(242, 242, 242, 1);
+       margin-top:70px;
+       
+     }
+     
+     h1 {
+       margin-top: 116px;
+     margin-left: 350px;
+       font-size: 40px;
+     }
+     
+     .img {
+       height: 600px;
+       margin-top: -400px;
+     }
+   .img-fluid{
+     height: 550px;
+     margin-top:50px;
+   }
+     
+     .course-col,
+     .campus-col,
+     .faci-col {
+       border-radius: 10px;
+       margin-bottom: 30px;
+       overflow: hidden;
+     }
+     
+     .layer {
+       background: transparent;
+       height: 100%;
+       width: 100%;
+       position: absolute;
+       top: 0;
+       left: 0;
+       transition: 0.5s;
+     }
+     .sc{
+       font-family: 'Satisfy', cursive;
+       font-weight:bold;
+       font-size:70px;
+       position:absolute;
+       margin-left:320px;
+     }
+     .layer:hover {
+ /* background: rgba(200, 194, 194, 0.7); opacity: 1;-*/
+     background-color:rgba(184, 180, 180,0.4);
+     
+     }
+     .navbar-light .navbar-nav .nav-link {
+       color: rgba(54, 89, 151, 1);
+       font-weight:bold;
+   }
+     
+     .layer h3 {
+       width: 100%;
+       font-weight: 500;
+       color: white;
+       font-size: 26px;
+       text-align: center;
+       bottom: 0;
+       left: 50%;
+       transform: translateX(-50%);
+       position: absolute;
+       opacity: 0;
+       transition: 0.5s;
+     }
+     
+     .layer:hover h3 {
+       bottom: 49%;
+       opacity: 1;
+     }
+     .col-md-4{
+       background-color:#c8d9e0;
+       border-radius:10px;
+       padding:10px;
+       margin-left:0px;
+     }
+     .cta .container-fluid {
+       padding-left: 0;
+       padding-right: 0;
+       background-color: rgba(242, 242, 242, 1);
+     }
+     /* Add this CSS class to the main div */
+     .image-wrapper {
+       height: 300px;
+       overflow: hidden;
+     }
+     
+     .image-wrapper img {
+       height: 100%;
+       object-fit: cover;
+       object-position: center;
+       width: 100%;
+     }
+     
+   
+ @media (min-width: 992px){
+ .navbar-expand-lg .navbar-collapse {
+     display: -ms-flexbox!important;
+     display: flex!important;
+     -ms-flex-preferred-size: auto;
+     flex-basis: auto;
+     height: 80px;
+     background-color:rgba(242, 242, 242, 1);
+ }
+ 
+ 
+ 
+   }
+   @media(max-width:790px){
+     .logo {
+       width: 283px;
+       height: auto;
+       margin-top: -429px;
+       border-radius: 72px;
+       margin-left: 33px;
+     }
+   }
+   @media(max-width:790px){
+     h1 {
+       margin-top: 150px;
+       margin-left: -10px;
+       font-size: 40px;
+     }
+   }
+ 
+   </style>
+ <body>
+   <header>
+     <!-- Header code goes here -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <!-- <a class="navbar-brand" href="#">
+         <img src="logo7.png" alt="Logo" class="logo" id="movingLogo">
+       </a> -->
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav ml-auto">
+           <li class="nav-item">
+             <a class="nav-link" href="/about">ABOUT US</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="{% url 'lviewbca' course='BCA'%}">FACULTY</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/lab">LAB</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/register1">APPLY APPICATION</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="./canteen">CANTEEN</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/library">LIBRARY</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="/plogin">LOGIN</a>
+           </li>
+         </ul>
+       </div>
+     </nav>
+     <div class="container-fluid">
+       <div class="row">
+         <div class="col-lg-6">
+           <div class="tag">
+             <h1 class="sc">SMART<br>CAMPUS</h1>
+           </div>
+           <div class="logo1">
+             <img src="{% static 'home/logo7.png' %}" alt="Logo" class="logo" id="movingLogo">
+           </div>
+         </div>
+         <div class="col-lg-6">
+           <img src="{% static 'home/ss.jpg'%}" class="img-fluid" alt="College Image">
+         </div>
+       </div>
+     </div>
+   </header>
+ 
+   <section class="course">
+     <div class="container">
+       <h1>COURSE OFFERED</h1>
+       <p>TOP RATED PROFESSOR</p>
+       <div class="row">
+         <div class="col-md-4">
+           <div class="course-col">
+             <!-- <div class="image-wrapper">
+               <img src="bcom.jpg" alt="BCom Image">
+             </div> -->
+             <h3>BCom</h3>
+             <p>A Bachelor of Commerce is an undergraduate degree in business, usually awarded by Canada, Australia, India, Srilanka. It is a three-year UG degree course.</p>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="course-col">
+             <!-- <div class="image-wrapper">
+               <img src="bca.jpg" alt="BCA Image">
+             </div> -->
+             <h3>BCA</h3>
+             <p>BCA is a 3-year undergraduate course designed to teach all the necessary aspects of computer applications like software, hardware, and networks. The course has a huge scope in India.</p>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="course-col">
+             <!-- <div class="image-wrapper">
+               <img src="bba.jpg" alt="BBA Image">
+             </div> -->
+             <h3>BBA</h3>
+             <p>A Bachelor of Business Administration (BBA) is a bachelor's degree that helps you establish a fundamental understanding of business and how various aspects of it apply to the real world.</p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>
+ 
+   <section class="campus">
+     <div class="container">
+       <h1>OUR GLOBAL CAMPUS</h1>
+       <p>Global Campus draws on the best in educational technology to create a secure and engaging learning environment for students of all ages.</p>
+       <div class="row">
+         <div class="col-md-4">
+           <div class="campus-col">
+             <div class="image-wrapper">
+               <img src="{% static 'home/hcam1.jpeg' %}" alt="Kundapura Image">
+             </div>
+             <div class="layer">
+               <h3>Kundapura</h3>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="campus-col">
+             <div class="image-wrapper">
+               <img src="{% static 'home/hcam2.jpeg' %}" alt="Udupi Image">
+             </div>
+             <div class="layer">
+               <h3>Udupi</h3>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="campus-col">
+             <div class="image-wrapper">
+               <img src="{% static 'home/hcam3.jpeg' %}" alt="Bangalore Image">
+             </div>
+             <div class="layer">
+               <h3>Bangalore</h3>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>
+ 
+   <section class="facilities">
+     <div class="container">
+       <h1>OUR FACILITIES</h1>
+       <p>Our Growing Campus is Home To Thousands of Students, Faculty and Staff Since 2009</p>
+       <div class="row">
+         <div class="col-md-4">
+           <div class="faci-col">
+             <div class="image-wrapper">
+               <img src="{% static 'home/hlib.webp' %}" alt="Library Image">
+             </div>
+             <h3>LIBRARY</h3>
+             <p>While pursuing your degree you will need to use these online databases for writing papers, sources for projects, and as cross-references to material you learn in class or in your textbook.</p>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="faci-col">
+             <div class="image-wrapper">
+               <img src="{% static 'home/hyoga.jpeg' %}" alt="Gym Image">
+             </div>
+             <h3>YOGA</h3>
+             <p>Use these health and wellness tips for college students to keep your mind and body healthy now, with wellness practices that can offer a lifetime of value.</p>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="faci-col">
+             <div class="image-wrapper">
+               <img src="{% static 'home/hsports.jpeg' %}" alt="Sports Image">
+             </div>
+             <h3>SPORTS</h3>
+             <p>Sport pertains to any form of competitive physical activity or game that aims to use, maintain, or improve physical ability and skills while providing enjoyment to participants and, in some cases, entertainment to spectators.</p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>
+ 
+   <section class="cta">
+     <div class="container">
+       <h1>ENROLL FOR OUR VARIOUS ONLINE COURSES<br>ANYWHERE FROM KARNATAKA</h1>
+       <a href="#" class="btn btn-primary">CONTACT US</a>
+     </div>
+   </section>
+ 
+   <footer class="footer">
+     <div class="container">
+       <h4>ABOUT US</h4>
+       <p>
+         <ion-icon name="logo-facebook"></ion-icon>
+         <ion-icon name="logo-instagram"></ion-icon>
+         <ion-icon name="logo-twitter"></ion-icon>
+       </p>
+     </div>
+   </footer>
+ 
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   
+ </body>
+ </html>
+ 
+ 

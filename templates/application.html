@@ -1,0 +1,264 @@
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application</title>
+</head>
+
+<body class="bdy">
+    <form method="POST" action="/application">
+        {% csrf_token %} 
+        <div class="head"> <h1>Application Form</h1></div><br/><br/>
+    <div class="div1">
+        <H2><B>APPLICATION FOR ADMISSION TO FIRST YEAR B.Com./B.B.A/B.C.A</B></H3>
+   First Name  :&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" class="id1" name="name" placeholder="First name" required><br><br>
+   Last Name   :&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="lname" class="id1" placeholder="Last name" required><br><br>
+   
+   Contact no  :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="tel" class="id1" name="tel" placeholder="Phone number" pattern="require ><br><br>
+   Email ID    :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <input type="email" name="email" class="id1" placeholder="Email Address" required><br><br>
+   Gender      :
+   {% comment %} <h4><label for="option1">option1</label> 
+    <h4><input type="radio" class="id1"  name="gender" value="male">Male<br>
+                 {% comment %} <label for="option1">option2</label> 
+                <input type="radio" class="id1" value="female" name="gender">Female<br>
+                {% comment %} <label for="option1">option3</label> 
+                <input type="radio" class="id1" name="gender" value="others">Others<br><br></h4>
+    Aadhar no  :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" max="12" min="12" name="aadhar" class="id1" placeholder="aadhar number" required><br><br>
+    DOB              :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="date" class="id1" name="dob" required><br><br>
+    <BR>
+    Place of birth   :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="id1" name="placeofbirth" placeholder="Enter village,taluk,district" required><br><br>
+    
+    
+    Religion & caste :&nbsp&nbsp<input type="text" class="id1"  name="caste" placeholder="religion and caste" required><br><br>
+    <HR>
+    <H3><B>NOTE:The students seeking reservation of seats as per G.O should sumbit the caste certificate in attested form</B></H3>
+    
+    Category to which applicant belongs :<br>
+    <input type="radio" name="category" value="SC">SC &nbsp&nbsp
+    <input type="radio" name="category" value="ST">ST &nbsp&nbsp
+    <input type="radio" name="category" value="GI">GI &nbsp&nbsp
+    <input type="radio" name="category" value="II(a)">II(a) &nbsp&nbsp
+    <input type="radio" name="category" value="II(b)">II(b) &nbsp&nbsp
+    <input type="radio" name="category" value="III(a)">III(a) &nbsp&nbsp
+    <input type="radio" name="category" value="III(b)">III(b) &nbsp&nbsp
+    <input type="radio" name="category" value="GM">GM &nbsp&nbsp
+    <input type="radio" name="category" value="PH">PH &nbsp&nbsp<br><br>
+
+    Name of the father/mother/guardian: &nbsp&nbsp<input type="text" name="parentsname" required class="id1" placeholder="enter father name"><br><br>
+    Occupation :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" name="occupation" class="id1" required><br><br>
+    Phone number:residence(mobile): &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="tel" class="id1" name="parentsno" required><br><br>
+    Annual income of the parent/guardian:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" class="id1" name="income" required><br><br>
+    Permanent address:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" class="id1" name="address" required><br><br>
+    <hr>
+   
+    Program to which admission is sought:<BR>
+    <input type="radio" name="course" value="BCA">BCA<br>
+    <input type="radio" name="course" value="BCom">BCom<br>
+    <input type="radio"  name="course" value="BBA">BBA<br><br>
+    Second language preferred:<br>
+    <input type="radio" name="language" value="Kannada">Kannada<br>
+    <input type="radio" name="language" value="Hindi">Hindi<br>
+    <input type="radio" name="language" value="Sanskrit">Sanskrit<br><br>
+    Register number of the Examination:&nbsp&nbsp&nbsp <input type="text" required min="12" max="12" placeholder="register number" name="regno"><br><br><BR>
+    <button type="submit"  value="Pay"/>PAY</button>
+</form>
+    </div>  
+</body>
+{% if messages %}
+        <script>
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    alert("{{ message }}");
+                {% endif %}
+            {% endfor %}
+        </script>
+{% endif %}
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Application</title>
+  <!-- Add custom CSS -->
+  <style>
+    body {
+      background-color: #d2dfe5;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="height: 262vh; width: 100%;">
+    <form method="POST" action="/application">
+      {% csrf_token %}
+      <div class="head">
+        <h1>Application Form</h1>
+      </div>
+      <br><br>
+      <div>
+        <h2>APPLICATION FOR ADMISSION TO FIRST YEAR B.Com./B.B.A/B.C.A</h2><br>
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input type="text" class="form-control" name="name" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" class="form-control" name="lname" placeholder="Last name" required>
+        </div>
+        <div class="form-group">
+          <label for="contactNo">Contact No:</label>
+          <input type="tel" class="form-control" name="tel" placeholder="Phone number" pattern="[6789][0-9]{9}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email ID:</label>
+          <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select class="form-control" name="gender" required>
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="aadharNo">Aadhar No:</label>
+          <input type="text" class="form-control" name="aadhar" placeholder="Aadhar number" required>
+        </div>
+        <div class="form-group">
+          <label for="dob">DOB:</label>
+          <input type="date" class="form-control" name="dob" required>
+        </div>
+        <div class="form-group">
+          <label for="placeOfBirth">Place of Birth:</label>
+          <input type="text" class="form-control" name="placeofbirth" placeholder="Enter village, taluk, district"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="religionCaste">Religion &amp; Caste:</label>
+          <input type="text" class="form-control" name="caste" placeholder="Religion and caste" required>
+        </div>
+        <hr>
+        <h6><b>NOTE: The students seeking reservation of seats as per G.O should submit the caste certificate in
+            attested form</b></h6>
+        <div class="form-group">
+          <label for="category">Category to which applicant belongs:</label>
+          <select class="form-control" name="category" required>
+            <option value="">Select category</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="GI">GI</option>
+            <option value="II(a)">II(a)</option>
+            <option value="II(b)">II(b)</option>
+            <option value="III(a)">III(a)</option>
+            <option value="III(b)">III(b)</option>
+            <option value="GM">GM</option>
+            <option value="PH">PH</option>
+            <!-- Add more options for categories -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="parentsName">Name of the Father/Mother/Guardian:</label>
+          <input type="text" class="form-control" name="parentsname" placeholder="Enter father's name" required>
+        </div>
+        <div class="form-group">
+            <label for="occupation">Occupation:</label>
+            <input type="text" class="form-control" name="occupation" placeholder="Enter occupation" required>
+          </div>
+          <div class="form-group">
+            <label for="parentsno">Phone number:residence(moblie):</label>
+            <input type="tel" class="form-control" name="parentsno" placeholder="Enter phoneno" pattern="[6789][0-9]{9}" required>
+          </div>
+          <div class="form-group">
+            <label for="income">Annual Income of the parent/guardian:</label>
+            <input type="text" class="form-control" name="income" placeholder="Enter Annual income" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Permanent address:</label>
+            <input type="text" class="form-control" name="address" placeholder="Enter permanent address" multi-line=True required>
+          </div>
+          <div class="form-group">
+            <label for="course">Program to which admission is sought:</label>
+            <select class="form-control" name="course" required>
+              <option value="">Select course</option>
+              <option value="BCA">BCA</option>
+              <option value="BCom">BCom</option>
+              <option value="BSc">BSc</option>
+              <option value="BBA">BBA</option>
+              <!-- Add more options for categories -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="language">Second language preferred:</label>
+            <select class="form-control" name="language" required>
+              <option value="">Select Second language</option>
+              <option value="Kannada">Kannada</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Sanskrit">Sanskrit</option>
+              <!-- Add more options for categories -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="address">Registration number of the Examination:</label>
+            <input type="text" class="form-control" name="regno" placeholder="Enter Register no."  min="11" max="12" required>
+          </div>
+        <!-- Add more form fields as necessary -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">PAY</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Add Bootstrap JS scripts if necessary -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Add your custom scripts here -->
+</body>
+{% if messages %}
+        <script>
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    alert("{{ message }}");
+                {% endif %}
+            {% endfor %}
+        </script>
+{% endif %}
+</html>

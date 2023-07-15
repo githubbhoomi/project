@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 50px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: #ffffff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+   <div class="container">
+        <form method="POST" action="/paydet">
+            {% csrf_token %}
+            <h2>Welcome, {{ std }}. Thanks for logging in.</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="{{ std }}" disabled>
+            <br><br>
+            <label for="total">Total Fees:</label>
+            <input type="number" id="total" name="total" required>
+            <br><br>
+            <label for="pay">Amount to Pay:</label>
+            <input type="number" id="pay" name="pay" required>
+            <br><br>
+            <input type="submit" value="Pay Fees">
+        </form>
+        <a href="{% url 'signinn' %}">Next</a>
+   </div>
+{% if messages %}
+<script>
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        alert("{{ message }}");
+    {% endif %}
+{% endfor %}
+</script>
+{% endif %}
+
+</body>
+</html>

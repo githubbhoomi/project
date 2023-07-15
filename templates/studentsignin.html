@@ -1,0 +1,609 @@
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+    background-color: #cae6f2;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+.navbar-toggle-label {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 20px;
+}
+
+.navbar-toggle-label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    background-color: #f4eaea;
+    transition: transform 0.3s;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-menu a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar-menu {
+        display: none;
+    }
+    
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-menu a {
+        color:#01030f;
+        position: relative;
+        z-index: 1;
+    }
+    .navbar-toggle:checked ~ .navbar-menu {
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        padding: 20px;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 1;
+    }
+    
+    .navbar-toggle:checked ~ .navbar-menu a {
+        margin-bottom: 10px;
+        z-index: 1;
+    }
+    
+    .navbar-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .navbar-toggle-label span:nth-child(2) {
+        opacity: 0.5;
+    }
+    
+    .navbar-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
+    }
+}
+
+
+        .content {
+            margin-top: 50px;
+            padding: 20px;
+        }
+        
+        .form-wrapper {
+            max-width: 500px;
+            margin: -60px auto;
+            margin-left: 800px;
+            background-color: rgba(243, 246, 249, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        
+        .form-wrapper h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-wrapper input[type="text"],
+        .form-wrapper input[type="email"],
+        .form-wrapper input[type="password"],
+        .form-wrapper input[type="file"] {
+            border-radius: 10px;
+            font-size: 15px;
+            height: 45px;
+            
+            padding-left: 15px;
+            margin-bottom: 10px;
+            color: black;
+        }
+        
+        .form-wrapper .btn-area {
+            height: 45px;
+            width: 100%;
+            background-color: #4b70e8;
+            border-radius: 45px;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 10px;
+            cursor: pointer;
+            line-height: 45px;
+        }
+        
+        .form-wrapper .course {
+            text-align: left;
+            margin-left: 10px;
+            justify-content: left;
+            width: 150px;
+        }
+        
+        input[type="radio"] {
+            height: 15px;
+            width: 15px;
+            padding: 5px;
+            margin-top: 0px;
+            color: black;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .form-wrapper {
+                padding: 20px;
+            }
+          }
+          .custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown select {
+    appearance: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #457ee2;
+    width: 200px;
+}
+
+.custom-dropdown select::-ms-expand {
+    display: none;
+}
+
+.dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #555;
+}
+
+@media only screen and (max-width: 600px) {
+    .custom-dropdown select {
+        width: 100%;
+    }
+}
+.file-input-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-input-label {
+  display: block;
+  padding: 10px 10px;
+  background-color: #4357ef;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Optional: Hover and Focus Styles */
+.file-input-label:hover,
+.file-input-label:focus {
+  background-color: #96bbe6;
+  outline: none;
+}
+.img{
+    margin: 0px auto;
+    /* margin-top: 200px; */
+    position: absolute;
+}
+.img img{
+    height: 800px;
+    width:60%;
+    opacity: 0.9; /* Set the desired opacity value */
+    /* filter: brightness(100%) saturate(10%) hue-rotate(10deg); */
+}
+@media only screen and (max-width: 768px) {
+  .form-wrapper {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    padding: 20px;
+  }
+  
+  .form-wrapper {
+    margin: 20px auto;
+    max-width: 100%;
+  }
+  
+  .img img {
+    height: auto;
+    width: 100%;
+  }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <input type="checkbox" id="navbar-toggle" class="navbar-toggle">
+        <label for="navbar-toggle" class="navbar-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <div class="navbar-menu">
+            <a href="{% url 'student_view' course='BCA' classes='III' %}">Students Information</a>
+            <a href="{% url 'student_view1' course='BCA' classes='III' %}">Fees Information</a>
+            <a href="{% url 'ssign' %}">Add New</a>
+            <a href="/logout1">Logout</a>
+        </div>
+    </nav>
+    <div class="img">
+    <img src="static/extraimages/ssignin.jpg"></div>
+    <div class="content">
+        <div class="form-wrapper">
+            <h1>STUDENT DETAILS</h1>
+            <form method="POST" action="/studentadd" enctype="multipart/form-data">
+                {% csrf_token %} 
+                <input type="text" placeholder="Enter the name" name="aname" ><br><br>
+                <input type="email" placeholder="Enter the email" name="semail"><br><br>
+                <input type="password" placeholder="Enter the password" name="apassword"><br><br>
+                <input type="password" placeholder="Reenter the password" name="rpassword"><br><br>
+                <div class="course">
+                    <h3>Enter a class:</h3>
+                    <div class="custom-dropdown">
+                        <select name="classes">
+                            <option value="I">First year</option>
+                            <option value="II">Second year</option>
+                            <option value="III">Final year</option>
+                        </select>
+                        <div class="dropdown-icon">&#9662;</div>
+                    </div>
+                </div>
+                
+                <div class="course">
+                    <h3>Enter a course:</h3>
+                    <div class="custom-dropdown">
+                        <select name="course">
+                            <option value="BCA">BCA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BCOM">BCOM</option>
+                        </select>
+                        <div class="dropdown-icon">&#9662;</div>
+                    </div>
+                </div><br>
+                
+                <div class="file-input-wrapper">
+                    <input type="file" id="image-input" name="image" class="file-input">
+                    <label for="image-input" class="file-input-label">Choose File</label>
+                </div>
+                  
+                <button type="submit" value=1 name="b1" class="btn-area">SUBMIT</button><br><br> 
+            </form>
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        .navbar {
+            background-color: #4b70e8;
+            padding: 10px;
+        }
+        
+        .navbar-toggle {
+            display: none;
+        }
+        
+        .navbar-toggle-label {
+            display: none;
+        }
+        
+        .navbar-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .navbar-menu a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        
+        .navbar-menu a:hover {
+            color: #f8f9fa;
+        }
+        
+        .img {
+            height:100%;
+            max-width: 500px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .img img {
+            height: 100%;
+            width:800px;
+            margin-left:-140px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            width:550px;
+            margin: 0 90px;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-wrapper {
+            text-align: left;
+        }
+        
+        .form-wrapper h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .form-wrapper input[type="text"],
+        .form-wrapper input[type="email"],
+        .form-wrapper input[type="password"],
+        .form-wrapper select {
+            width: 90%;
+            padding: 4px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        
+        .form-wrapper select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="#000" d="M6 9l3-3H3l3 3z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+            background-color: #fff;
+        }
+        
+        .form-wrapper .btn-area {
+            background-color: #4b70e8;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-wrapper .btn-area:hover {
+            background-color: #3b5acf;
+        }
+        @media only screen and (max-width: 600px) {
+            .navbar-menu {
+                display: none;
+            }
+            
+            .navbar-toggle {
+                display: block;
+            }
+            .navbar-menu a {
+                color:#01030f;
+                position: relative;
+                z-index: 1;
+            }
+            .navbar-toggle:checked ~ .navbar-menu {
+                display: flex;
+                flex-direction: column;
+                background-color: transparent;
+                padding: 20px;
+                position: absolute;
+                top: 40px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                z-index: 1;
+            }
+            
+            .navbar-toggle:checked ~ .navbar-menu a {
+                margin-bottom: 10px;
+                z-index: 1;
+            }
+            
+            .navbar-toggle-label span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .navbar-toggle-label span:nth-child(2) {
+                opacity: 0.5;
+            }
+            
+            .navbar-toggle-label span:nth-child(3) {
+                transform: rotate(-45deg) translate(4px, -4px);
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            .form-wrapper {
+                padding: 20px;
+            }
+          }
+          @media only screen and (max-width: 600px) {
+            .custom-dropdown select {
+                width: 100%;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            .content {
+              padding: 20px;
+              width: 75%;
+              margin:0 -4px;
+            }
+            
+            .form-wrapper {
+              margin: -37 -100px;
+              max-width: 331px;
+              padding:-126px;
+            }
+            
+            .img img {
+              height: auto;
+              width: 100%;
+            }
+            .form-wrapper input[type="password"],
+            .form-wrapper input[type="text"],
+            .form-wrapper input[type="email"],
+        .form-wrapper select {
+            width: 150px;
+            padding: 4px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        
+          }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_view' course='BCA' classes='III' %}">Students Information</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_view1' course='BCA' classes='III' %}">Fees Information</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ssign' %}">Add New</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout1">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img">
+                    <img src="static/extraimages/ssignin.jpg" alt="Sign in image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content">
+                    <div class="form-wrapper">
+                        <h1>STUDENT DETAILS</h1>
+                        <form method="POST" action="/studentadd" enctype="multipart/form-data">
+                            {% csrf_token %} 
+                            <input type="text" placeholder="Enter the name" name="aname" required>
+                            <input type="email" placeholder="Enter the email" name="semail" required>
+                            <input type="password" placeholder="Enter the password" name="apassword" required>
+                            <input type="password" placeholder="Reenter the password" name="rpassword"required>
+                            <div class="course">
+                                <h5>Enter a class:</h5>
+                                <select name="classes" class="custom-select" >
+                                    <option value="I">First year</option>
+                                    <option value="II">Second year</option>
+                                    <option value="III">Final year</option>
+                                </select>
+                            </div>
+                            
+                            <div class="course">
+                                <h5>Enter a course:</h5>
+                                <select name="course" class="custom-select">
+                                    <option value="BCA">BCA</option>
+                                    <option value="BBA">BBA</option>
+                                    <option value="BCOM">BCOM</option>
+                                </select>
+                            </div>
+                            
+                            <div class="file-input-wrapper">
+                                <input type="file" id="image-input" name="image" class="file-input" required>
+                                <label for="image-input" class="file-input-label"></label>
+                            </div><br>
+                              
+                            <button type="submit" value="1" name="b1" class="btn-area">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

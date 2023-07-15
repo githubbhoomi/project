@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Profiles</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script>
+        document.addEventListener('click', function(event) {
+  const dropdown = event.target.closest('.dropdown');
+  if (dropdown) {
+    dropdown.classList.toggle('active');
+  } else {
+    const activeDropdown = document.querySelector('.dropdown.active');
+    if (activeDropdown) {
+      activeDropdown.classList.remove('active');
+    }
+  }
+});
+
+    </script>
+    <style>
+        .profile-heading {
+            text-align: center;
+            font-weight: bold;
+            font-size: 44px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .profile-card {
+            background-color: #d6e0eb;
+            border: 0px solid;
+            {% comment %} min-width: auto; {% endcomment %}
+            margin: 10px;
+            width:300px;
+            padding: 10px;
+            box-sizing:content-box;
+            border-radius:10px;
+            text-align: center;
+        }
+        .profile-image {
+            width: 70%;
+            height: 230px;
+            position: static;
+            border-radius:10px;
+        }
+        .sidebar {
+            padding: 20px;
+            background-color: #ccd6f5;
+            position: fixed;
+            height: 100%;
+        }
+        .sidebar a {
+            display: block;
+            color: #110202;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        p, h1 {
+            color: rgb(13, 12, 12);
+        }
+        .content {
+            margin-left: 220px; /* Adjust this value to provide space for the sidebar */
+        }
+        .profile-section {
+            margin-top: 30px;
+            display: flex; /* Use flexbox */
+            flex-wrap: wrap; /* Allow cards to wrap to the next line if necessary */
+            justify-content: center; /* Center the cards horizontally */
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+          }
+          
+          .dropdown-btn {
+            background-color: #ccd6f5;
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+          }
+          
+          .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+          }
+          
+          .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+          }
+          
+          .dropdown-content a:hover {
+            background-color: #f0f0f0;
+          }
+          
+          .dropdown-btn:after {
+              content: '\25BC'; /* Down arrow unicode character */
+              margin-left: 5px;
+            }
+            
+          .dropdown.active .dropdown-content {
+              display: block;
+            }
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .sidebar {
+                position: static;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+        @media (max-width: 991px) {
+            .profile-card {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar">
+                <div class="dropdown">
+                    <button class="dropdown-btn">BCA students</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'student_view4' course='BCA' classes='III' %}">Final year</a>
+                        <a href="{% url 'student_view4' course='BCA' classes='II' %}">Second year</a>
+                        <a href="{% url 'student_view4' course='BCA' classes='I' %}">First year</a>
+                      <!-- Add more actions/links as needed -->
+                    </div>
+                </div><br><br>
+                <div class="dropdown">
+                    <button class="dropdown-btn">BBA students</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'student_view4' course='BBA' classes='III' %}">Final year</a>
+                        <a href="{% url 'student_view4' course='BBA' classes='II' %}">Second year</a>
+                        <a href="{% url 'student_view4' course='BBA' classes='I' %}">First year</a>
+                      <!-- Add more actions/links as needed -->
+                    </div><br><br>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Bcom students</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'student_view4' course='BCOM' classes='III' %}">Final year</a>
+                        <a href="{% url 'student_view4' course='BCOM' classes='II' %}">Second year</a>
+                        <a href="{% url 'student_view4' course='BCOM' classes='I' %}">First year</a>
+
+                      <!-- Add more actions/links as needed -->
+                    </div><br><br>
+                </div>
+               &nbsp <a href="/backtomy_form">Back</a>
+            </div>
+            <div class="col-md-10 content">
+                <div class="profile-heading">
+                    Students Profiles
+                </div>
+                <div class="profile-section">
+                    {% for a in students %}
+                    <div class="profile-card">
+                        <h1 style="font-weight: bold; font-size: 14px;">Name: {{ a.s.first_name  }}</h1>
+                        <img class="profile-image" src="{{ a.image.url }}" alt="Image">
+                        <p>Course: {{ a.course }}</p>
+                        <p>Class: {{ a.classes }}</p>
+                        <p>Email: {{ a.s.email }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                  
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+

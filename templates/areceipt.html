@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Form</title>
+    <style>
+        .container{
+            background-color: lavender;
+        } 
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    {% endif %} 
+    <div class="container">
+        <h1>Payment Form</h1>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+            </div>
+            <div class="form-group">
+                <label for="course">Course:</label>
+                <input type="text" class="form-control" id="course" name="course" value="{{course}}">
+            </div>
+            <div class="form-group">
+                <label for="classes">Class:</label>
+                <input type="text" class="form-control" id="classes" name="classes" value="{{classes}}">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" name="date" value="{{date1}}">
+            </div>
+            <div class="form-group">
+                <label for="total">Total fees:</label>
+                <input type="number" class="form-control" id="total" name="total" value="{{total}}">
+            </div>
+            <div class="form-group">
+                <label for="remain">Remaining fees:</label>
+                <input type="number" class="form-control" id="remain" name="remain" value="{{remain}}">
+            </div>
+            <div class="form-group">
+                <label for="paid">Amount paid:</label>
+                <input type="number" class="form-control" id="paid" name="paid" value="{{paid}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{% url 'signinn' %}" class="btn btn-secondary">Next</a>
+            <button onclick="window.print(); event.stopPropagation();">Print</button>  
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</body>
+
+</html>

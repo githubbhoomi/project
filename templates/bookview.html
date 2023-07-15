@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Book Details</title>           
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <a href="{% url 'book_view' type='Novel' %}" class="nav-link">Novel</a>
+        <a href="{% url 'book_view' type='Textbook' %}" class="nav-link">Textbook</a>
+        <a href="{% url 'book_view' type='storybook' %}" class="nav-link">StoryBook</a>
+        <a href="{% url 'book_view' type='historyfantasy' %}" class="nav-link">History Fantasy</a>
+        <a href="{% url 'book_view' type='Others' %}" class="nav-link">Others</a>
+        <a href="/ulibhome" class="nav-link">Back</a>
+      </div>
+      <div class="col-md-10 content">
+        <div class="profile-heading" style="font-size:40px;text-align:center;font-weight:bold;">
+          Book Detail
+        </div>
+        <div class="profile-section">
+          <div class="row">
+            {% for a in books %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card">
+                <h1 style="font-weight: bold; font-size: 24px;"><b>Accession No: </b>{{ a.bookid }}</h1>
+                <img class="card-img-top img-fluid" src="{{ a.bookimg.url }}" alt="Image">
+                <div class="card-body">
+                  <p><b>Name: </b>{{ a.bookname }}</p>
+                  <p><b>Author: </b>{{ a.author }}</p>
+                  <p><b>Copies: </b>{{ a.copies }}</p>
+                  <p><b>Total_Copies: </b>{{ a.total_copies }}</p>
+                  <p><b>Publication: </b>{{ a.publication }}</p>
+                  <form action="/issue_book" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="bookid" value="{{ a.bookid }}">
+                    <button type="submit" class="btn btn-primary" name="btn"  value="b1">{{ a.status }}</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap JS (optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+{% if messages %}
+        <script>
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    alert("{{ message }}");
+                {% endif %}
+            {% endfor %}
+        </script>
+{% endif %}
+</html>

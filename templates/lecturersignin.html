@@ -1,0 +1,677 @@
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant Sign In</title>
+    <script>
+        function showConfirmationPopup() {
+            const popup = document.getElementById('confirmationPopup');
+            popup.style.display = 'block';
+        }
+        function closePopup1() {
+            document.getElementById('confirmationPopup').style.display = 'none';
+          }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d6edfc;
+        }
+
+        .navbar {
+            background-color: #1e99b7;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: right;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+       
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #9cd9f3;
+            border-radius: 305px;
+            box-shadow: 0 0 10px rgba(2, 1, 17, 0.1);
+            margin-top:2px;
+            
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .course {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 70%;
+            padding: 10px;
+            margin-left: 80px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #5ee2ec;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        input[type="submit"] {
+            background-color: #34667d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-left: 240px;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        /* body{
+            background-color: rgb(125, 125, 205);
+        } */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #6ac9e9;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px #ccc;
+            padding: 20px;
+            z-index: 9999;
+          }
+        
+          .popup label {
+            display: block;
+            margin-bottom: 10px;
+          }
+        
+          .popup input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            margin-left: -0px;
+          }
+        
+          .popup .del {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #655fe3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+        
+          .popup .del:hover {
+            background-color: #9f82f0;
+          }
+          .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #c21a1a;
+            cursor: pointer;
+          }
+          .course {
+            text-align: left;
+            margin-left: 10px;
+            justify-content: left;
+            width: 150px;
+        }
+        
+        select {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 80px;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #4c74e1;
+            color: #fff;
+            border-radius: 4px;
+            margin-left: 210px;
+          }
+          
+          .custom-file-upload:hover {
+            background-color: #aaa;
+          }
+          label{
+            margin-left: 80px;
+          }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/back">Back</a>
+        <a href="#" onclick="showConfirmationPopup()">Delete</a>
+    </div>
+    <div class="container">
+        <form method="POST" action="/lectureradd" enctype="multipart/form-data">
+            {% csrf_token %} 
+            <input type="text" placeholder="Enter the name" name="aname" required><br><br>
+            <input type="email" placeholder="Enter the email" name="aemail" required><br><br>
+            <input type="password" placeholder="Enter the password" name="apassword" required><br><br>
+            <div class="form-group">
+                <label  for="classes">Select Class:</label><br>
+                <select id="classes" name="classes" class="form-control">
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="course">Select Course:</label><br>
+                <select id="course" name="course" class="form-control">
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BCOM">BCOM</option>
+                </select>
+            </div>
+            <label for="img" class="custom-file-upload">
+                Custom Upload
+              </label>
+            <input type="file" id="img" name="image" style="display: none;"><br><br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <form  method="post" action="{% url 'deletelecturer1' %}">
+        {% csrf_token %} 
+        <div class="popup" id="confirmationPopup" style="display: none;">
+        <button class="close-button" onclick="closePopup1()">&times;</button>
+        <label style="margin-left: -0px;" for="email">Enter Lecturer email:</label>
+        <input type="email" name="demail" required>
+        <button type="submit" class="del">Delete</button>
+    </form>
+
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    {% endif %} 
+</body>
+</html>
+ {% endcomment %}
+ {% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant Sign In</title>
+    <script>
+        function showConfirmationPopup() {
+            const popup = document.getElementById('confirmationPopup');
+            popup.style.display = 'block';
+        }
+        function closePopup1() {
+            document.getElementById('confirmationPopup').style.display = 'none';
+          }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d6edfc;
+        }
+
+        .navbar {
+            background-color: #1e99b7;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: right;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        /* {% comment %} .navbar a.active {
+            background-color: #4CAF50;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #9cd9f3;
+            border-radius: 305px;
+            box-shadow: 0 0 10px rgba(2, 1, 17, 0.1);
+            margin-top:2px;
+            
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .course {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 70%;
+            padding: 10px;
+            margin-left: 80px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #5ee2ec;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        input[type="submit"] {
+            background-color: #34667d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-left: 240px;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        /* body{
+            background-color: rgb(125, 125, 205);
+        } */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #6ac9e9;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px #ccc;
+            padding: 20px;
+            z-index: 9999;
+          }
+        
+          .popup label {
+            display: block;
+            margin-bottom: 10px;
+          }
+        
+          .popup input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            margin-left: -0px;
+          }
+        
+          .popup .del {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #655fe3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+        
+          .popup .del:hover {
+            background-color: #9f82f0;
+          }
+          .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #c21a1a;
+            cursor: pointer;
+          }
+          .course {
+            text-align: left;
+            margin-left: 10px;
+            justify-content: left;
+            width: 150px;
+        }
+        
+        select {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 80px;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #4c74e1;
+            color: #fff;
+            border-radius: 4px;
+            margin-left: 210px;
+          }
+          
+          .custom-file-upload:hover {
+            background-color: #aaa;
+          }
+          label{
+            margin-left: 80px;
+          }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/back">Back</a>
+        <a href="#" onclick="showConfirmationPopup()">Delete</a>
+    </div>
+    <div class="container">
+        <form method="POST" action="/lectureradd" enctype="multipart/form-data">
+            {% csrf_token %} 
+            <input type="text" placeholder="Enter the name" name="aname" required><br><br>
+            <input type="email" placeholder="Enter the email" name="aemail" required><br><br>
+            <input type="password" placeholder="Enter the password" name="apassword" required><br><br>
+            <div class="form-group">
+                <label  for="classes">Select Class:</label><br>
+                <select id="classes" name="classes" class="form-control">
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="course">Select Course:</label><br>
+                <select id="course" name="course" class="form-control">
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BCOM">BCOM</option>
+                </select>
+            </div>
+            <label for="img" class="custom-file-upload">
+                Custom Upload
+              </label>
+            <input type="file" id="img" name="image" style="display: none;"><br><br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <form  method="post" action="{% url 'deletelecturer1' %}">
+        {% csrf_token %} 
+        <div class="popup" id="confirmationPopup" style="display: none;">
+        <button class="close-button" onclick="closePopup1()">&times;</button>
+        <label style="margin-left: -0px;" for="email">Enter Lecturer email:</label>
+        <input type="email" name="demail" required>
+        <button type="submit" class="del">Delete</button>
+    </form>
+
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                alert("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+    {% endif %} 
+</body>
+</html>
+ {% endcomment %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Lecturer Registration</title>
+     <script>
+        function showConfirmationPopup() {
+            const popup = document.getElementById('confirmationPopup');
+            popup.style.display = 'block';
+        }
+        function closePopup1() {
+            document.getElementById('confirmationPopup').style.display = 'none';
+          }
+    </script>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+             margin: 0;
+             padding: 0;
+             background-color: white;
+         }
+ 
+         .navbar {
+             background-color: #88c8e2;
+             overflow: hidden;
+         }
+ 
+         .navbar a {
+             float: right;
+             display: block;
+             color: #fff;
+             text-align: center;
+             padding: 14px 16px;
+             text-decoration: none;
+         }
+ 
+         .navbar a:hover {
+             background-color: #555;
+         }
+ 
+         .container {
+             max-width: 550px;
+             margin: 0 auto;
+             padding: 40px;
+             background-color: white;
+             border-radius: 10px;
+             box-shadow:0 0 20px rgb(154,227,236);
+             margin-top: 20px;
+         }
+ 
+         form {
+             margin-bottom: 20px;
+         }
+ 
+         input[type="text"],
+         input[type="email"],
+         input[type="password"],
+         input[type="file"] {
+             width: 100%;
+             padding: 10px;
+             margin-bottom: 10px;
+             box-sizing: border-box;
+             border: 1px solid #5ee2ec;
+             border-radius: 10px;
+         }
+ 
+         input[type="submit"] {
+             background-color: #0d6efd;
+             color: white;
+             border: none;
+             padding: 10px 20px;
+             cursor: pointer;
+         }
+ 
+         a {
+             color: #333;
+             text-decoration: none;
+             margin-right: 10px;
+         }
+ 
+         .popup {
+             position: fixed;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             background: #eef2f3;
+             border-radius: 5px;
+             box-shadow: 0px 0px 5px #ccc;
+             padding: 20px;
+             z-index: 9999;
+         }
+ 
+         .popup label {
+             display: block;
+             margin-bottom: 10px;
+         }
+ 
+         .popup input[type="email"] {
+             width: 100%;
+             padding: 10px;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             margin-bottom: 10px;
+         }
+ 
+         .popup .del {
+             display: block;
+             width: 100%;
+             padding: 10px;
+             background-color:#0d6efd;
+             color: white;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+         }
+ 
+         .popup .del:hover {
+             background-color: #9f82f0;
+         }
+ 
+         .close-button {
+             position: absolute;
+             top: 10px;
+             right: 10px;
+             font-size: 24px;
+             background: none;
+             border: none;
+             color: #c21a1a;
+             cursor: pointer;
+         }
+     </style>
+ </head>
+ <body>
+     <nav class="navbar">
+         <a href="/back">Back</a>
+         {% comment %} <a href="#" onclick="showConfirmationPopup()">Delete</a> {% endcomment %}
+     </nav>
+ 
+     <div class="container">
+         <form method="POST" action="/lectureradd" enctype="multipart/form-data">
+             {% csrf_token %}
+             <div class="mb-3">
+                 <input type="text" class="form-control" placeholder="Enter the name" name="aname" required>
+             </div>
+             <div class="mb-3">
+                 <input type="email" class="form-control" placeholder="Enter the email" name="aemail" required>
+             </div>
+             <div class="mb-3">
+                 <input type="password" class="form-control" placeholder="Enter the password" name="apassword" required>
+             </div>
+             <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Reenter the password" name="rpassword" required>
+            </div>
+             <div class="mb-3">
+                 <label for="classes" class="form-label">Select Class:</label>
+                 <select id="classes" name="classes" class="form-select">
+                     <option value="I">I</option>
+                     <option value="II">II</option>
+                     <option value="III">III</option>
+                 </select>
+             </div>
+             <div class="mb-3">
+                 <label for="course" class="form-label">Select Course:</label>
+                 <select id="course" name="course" class="form-select">
+                     <option value="BCA">BCA</option>
+                     <option value="BBA">BBA</option>
+                     <option value="BCOM">BCOM</option>
+                 </select>
+             </div>
+             <div class="mb-3">
+                 <label for="img" class="form-label">Custom Upload:</label>
+                 <input type="file" id="img" name="image" style="display: none;" required>
+                 <label for="img" class="custom-file-upload"></label>
+             </div>
+             <input type="submit" value="Save" class="btn btn-primary">
+         </form>
+     </div>
+ 
+     {% comment %} <form  method="post" action="{% url 'deletelecturer1' %}">
+        {% csrf_token %} 
+        <div class="popup" id="confirmationPopup" style="display: none;">
+        <button class="close-button" onclick="closePopup1()">&times;</button>
+        <label style="margin-left: -0px;" for="email">Enter Lecturer email:</label>
+        <input type="email" name="demail" required>
+        <button type="submit" class="del">Delete</button>
+    </form> {% endcomment %}
+ 
+     <!-- Bootstrap JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+ 
+     
+ </body>
+ {% if messages %}
+         <script>
+             {% for message in messages %}
+                 {% if message.tags == 'success' %}
+                     alert("{{ message }}");
+                 {% endif %}
+             {% endfor %}
+         </script>
+     {% endif %}
+ </html>
+ 
